@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/gze1206/DailyNonsan#readme",
   "dependencies": {
+    "@types/node": "^12.12.12",
     "sqlite3": "^4.1.0",
-    "the-camp-lib": "^1.2.1"
+    "the-camp-lib": "^1.2.1",
+    "typescript": "^3.7.2"
   }
 }
