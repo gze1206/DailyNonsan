@@ -1,0 +1,23 @@
+{
+  "name": "dailynonsan",
+  "version": "1.0.0",
+  "description": "HoonRyeonSo GaGiSilTa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gze1206/DailyNonsan.git"
+  },
+  "author": "gze1206",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gze1206/DailyNonsan/issues"
+  },
+  "homepage": "https://github.com/gze1206/DailyNonsan#readme",
+  "dependencies": {
+    "sqlite3": "^4.1.0",
+    "the-camp-lib": "^1.2.1"
+  }
+}
