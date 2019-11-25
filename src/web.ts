@@ -17,7 +17,7 @@ export class WebServer {
 
     public run(port: number) {
         this.server.listen(port, () => {
-            console.log('Run');
+            console.log(`WEB : listen on ${port}...`);
         });
     }
 }
