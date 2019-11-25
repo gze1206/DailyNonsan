@@ -1,24 +1,22 @@
 import express from 'express';
+import { ApplicationRequestHandler } from 'express-serve-static-core';
+
+type handler = (req: express.Request, res: express.Response, next: express.NextFunction) => any;
 
 export class WebServer {
 
     server: express.Express;
 
-    constructor(port: number = 5252) {
+    constructor() {
         this.server = express();
-        this.run(port);
+    }
+
+    public use(path: string, fn: handler) {
+        this.server.use(path, fn);
     }
 
     public run(port: number) {
-        const server = this.server;
-
-        server.use('/', (req, res) => {
-            res.status(200).json({
-                test: 'hello',
-            });
-        });
-
-        server.listen(port, () => {
+        this.server.listen(port, () => {
             console.log('Run');
         });
     }
