@@ -4,8 +4,8 @@
   "description": "HoonRyeonSo GaGiSilTa",
   "main": "./build/index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
-    "debug": "nodemon --nolazy --inspect-brk=9229 src/index.ts"
+    "start": "tsc && nodemon src/index.ts",
+    "debug": "tsc && nodemon --nolazy --inspect-brk=9229 src/index.ts"
   },
   "repository": {
     "type": "git",
