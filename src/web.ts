@@ -1,14 +1,17 @@
 import express from 'express';
 import { ApplicationRequestHandler } from 'express-serve-static-core';
+import { Connection } from 'typeorm';
 
 type handler = (req: express.Request, res: express.Response, next: express.NextFunction) => any;
 
 export class WebServer {
 
     server: express.Express;
+    dbConn: Connection;
 
-    constructor() {
+    constructor(conn: Connection) {
         this.server = express();
+        this.dbConn = conn;
     }
 
     public use(path: string, fn: handler) {
