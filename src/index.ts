@@ -9,10 +9,9 @@ import { SettingManager } from "./settingManager";
     createConnection().then(async connection => {
 
         const web = new WebServer(connection);
+
         web.use('/', (req, res) => {
-            res.status(200).json({
-                test: 'HELLO!',
-            });
+            WebServer.Render('test', req, res);
         });
         web.run(5252);
         console.log(await SettingManager.GetOption(connection, SettingManager.KEY_TRAINEE_NAME, true));
