@@ -21,20 +21,30 @@ export class WebServer {
     dbConn: Connection;
     static title = 'Daily NonSan';
     static navbar: NavbarItem[] = [
-        new NavbarItem('/', '뭐 넣지'),
-        new NavbarItem('/', '뭐 넣을까'),
+        new NavbarItem('/index', '뭐 넣지'),
+        new NavbarItem('/index', '뭐 넣을까'),
     ];
 
     constructor(conn: Connection) {
         const server = this.server = express();
         server.set('views', __dirname + '/../views');
         server.set('view engine', 'ejs');
+        server.use(express.static('./public'));
 
         this.dbConn = conn;
     }
 
     public use(path: string, fn: handler) {
         this.server.use(path, fn);
+    }
+    public get(path: string, fn: handler) {
+        this.server.get(path, fn);
+    }
+    public post(path: string, fn: handler) {
+        this.server.post(path, fn);
+    }
+    public delete(path: string, fn: handler) {
+        this.server.delete(path, fn);
     }
 
     public run(port: number) {
@@ -43,12 +53,13 @@ export class WebServer {
         });
     }
 
-    public static Render(content: string, req: express.Request, res: express.Response) {
-        const header = readFileSync('./views/index.ejs', 'utf8');
-        const data = render(header, {
+    public static Render(content: string, scripts: string[], req: express.Request, res: express.Response) {
+        const common = readFileSync('./views/common.ejs', 'utf8');
+        const data = render(common, {
             title: WebServer.title,
             content: content,
             navbar: WebServer.navbar,
+            scripts: scripts,
         });
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(data);

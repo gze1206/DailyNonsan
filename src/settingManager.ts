@@ -1,5 +1,6 @@
 import { Connection } from "typeorm";
 import { Setting } from "./entity/Setting";
+import { WebServer } from "./web";
 
 export class SettingManager {
 
@@ -34,5 +35,25 @@ export class SettingManager {
         data.key = key;
         data.value = value;
         return await repo.save(data);
+    }
+
+    public static SetupRoute(server: WebServer, conn: Connection) {
+        server.server.get('/settings', (req, res) => {
+            Promise.all([
+                this.GetOption(conn, SettingManager.KEY_TRAINEE_NAME, true),
+                this.GetOption(conn, SettingManager.KEY_UNIT_NAME, true),
+                this.GetOption(conn, SettingManager.KEY_ENTER_DATE, true),
+                this.GetOption(conn, SettingManager.KEY_BIRTH_DAY, true),
+            ])
+                .then(result => {
+                    console.log('result : ', result);
+                    res.status(200).json({
+                        [SettingManager.KEY_TRAINEE_NAME]: result[0],
+                        [SettingManager.KEY_UNIT_NAME]: result[1],
+                        [SettingManager.KEY_ENTER_DATE]: result[2],
+                        [SettingManager.KEY_BIRTH_DAY]: result[3],
+                    });
+                });
+        });
     }
 }

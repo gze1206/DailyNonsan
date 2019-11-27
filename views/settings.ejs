@@ -1,0 +1,38 @@
+<!--<a class="waves-effect waves-light btn" onclick="TEST()">TEST</a>-->
+<table class="responsive-table centered highlight">
+
+<thead>
+    <tr>
+        <th>KEY</th>
+        <th>VALUE</th>
+    </tr>
+</thead>
+
+<tbody>
+    <tr v-for="key in Object.keys(settings)">
+        <td>{{key}}</td>
+        <td>
+            <div class="input-field">
+                <input placeholder="Placeholder" v-bind:id="key + '_value'" type="text" v-bind:value="settings[key]">
+            </div>
+        </td>
+    </tr>
+</tbody>
+
+<tfoot>
+    <tr>
+        <td></td>
+        <td>
+            <a class="waves-effect waves-light green btn" style="float:right" onclick="getSettings()">
+                <i class="material-icons left">refresh</i>
+                RELOAD
+            </a>
+            <a class="waves-effect waves-light cyan btn" style="float:right" onclick="postSettings()">
+                <i class="material-icons left">cloud_upload</i>
+                SAVE
+            </a>
+        </td>
+    </tr>
+</tfoot>
+
+</table>
