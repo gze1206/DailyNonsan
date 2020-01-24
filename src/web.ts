@@ -2,6 +2,7 @@ import express from 'express';
 import { Connection } from 'typeorm';
 import { readFileSync } from 'fs';
 import { render } from 'ejs';
+import * as bodyParser from 'body-parser';
 
 type handler = (req: express.Request, res: express.Response, next: express.NextFunction) => any;
 
@@ -30,6 +31,8 @@ export class WebServer {
         server.set('views', __dirname + '/../views');
         server.set('view engine', 'ejs');
         server.use(express.static('./public'));
+        server.use(bodyParser.json());
+        server.use(bodyParser.urlencoded({ extended: true }));
 
         this.dbConn = conn;
     }

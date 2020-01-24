@@ -11,11 +11,11 @@ import { readFileSync } from "fs";
 
         const web = new WebServer(connection);
 
-        web.use('/index', (req, res, next) => {
+        SettingManager.SetupRoute(web, connection);
+        web.use('/', (req, res, next) => {
             const settings = readFileSync('./views/settings.ejs', 'utf8');
             WebServer.Render(settings, ['settings.js'], req, res);
         });
-        SettingManager.SetupRoute(web, connection);
 
         web.run(5252);
         console.log(await SettingManager.GetOption(connection, SettingManager.KEY_TRAINEE_NAME, true));

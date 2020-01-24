@@ -1,5 +1,5 @@
 <!--<a class="waves-effect waves-light btn" onclick="TEST()">TEST</a>-->
-<table class="responsive-table centered highlight">
+<table class="centered highlight">
 
 <thead>
     <tr>
@@ -13,7 +13,7 @@
         <td>{{key}}</td>
         <td>
             <div class="input-field">
-                <input placeholder="Placeholder" v-bind:id="key + '_value'" type="text" v-bind:value="settings[key]">
+                <input placeholder="Placeholder" :id="key + '_value'" :setting_key="key" type="text" v-bind:value="settings[key]">
             </div>
         </td>
     </tr>

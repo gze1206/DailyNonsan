@@ -39,20 +39,24 @@ export class SettingManager {
 
     public static SetupRoute(server: WebServer, conn: Connection) {
         server.server.get('/settings', (req, res) => {
-            Promise.all([
-                this.GetOption(conn, SettingManager.KEY_TRAINEE_NAME, true),
-                this.GetOption(conn, SettingManager.KEY_UNIT_NAME, true),
-                this.GetOption(conn, SettingManager.KEY_ENTER_DATE, true),
-                this.GetOption(conn, SettingManager.KEY_BIRTH_DAY, true),
-            ])
+            Promise.all(Object.keys(SettingManager.DEFAULT_VALUES).map(key => this.GetOption(conn, key, true)))
                 .then(result => {
-                    console.log('result : ', result);
+                    console.log(`Loaded setting : ${result}`);
                     res.status(200).json({
                         [SettingManager.KEY_TRAINEE_NAME]: result[0],
                         [SettingManager.KEY_UNIT_NAME]: result[1],
                         [SettingManager.KEY_ENTER_DATE]: result[2],
                         [SettingManager.KEY_BIRTH_DAY]: result[3],
                     });
+                });
+        });
+
+        server.server.post('/settings', (req, res) => {
+            const settings = req.body;
+            Promise.all(Object.keys(SettingManager.DEFAULT_VALUES).map(key => this.SetOption(conn, key, settings[key])))
+                .then(result => {
+                    console.log(`Saved setting : ${JSON.stringify(settings)}`);
+                    res.status(200).send({ result: true, echo: req.body });
                 });
         });
     }
