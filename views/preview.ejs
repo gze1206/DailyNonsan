@@ -1,0 +1,10 @@
+    <div class="row">
+        <div class="col s12">
+            <a class="waves-effect waves-light btn" onclick="GetPreview('news')">NEWS</a>
+        </div>
+        <div class="col s12">
+            <div class="card-panel">
+                <p v-for="line in content.split('\n')">{{line}}</p>
+            </div>
+        </div>
+    </div>

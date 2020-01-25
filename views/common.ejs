@@ -46,17 +46,19 @@
 </script>
 
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#!" class="brand-logo"><%=title %></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <% navbar.forEach(function(item){ %>
-                    <li><a href="<%=item.href%>"><%= item.text %></a></li>
-                <% }) %>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo" style="padding-left: 15px;"><%=title %></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <% navbar.forEach(function(item){ %>
+                        <li><a href="<%=item.href%>"><%= item.text %></a></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <ul class="sidenav" id="mobile-demo">
         <% navbar.forEach(function(item){ %>
             <li><a href="<%=item.href%>"><%= item.text %></a></li>

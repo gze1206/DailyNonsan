@@ -22,8 +22,8 @@ export class WebServer {
     dbConn: Connection;
     static title = 'Daily NonSan';
     static navbar: NavbarItem[] = [
-        new NavbarItem('/index', '뭐 넣지'),
-        new NavbarItem('/index', '뭐 넣을까'),
+        new NavbarItem('/', 'MAIN'),
+        new NavbarItem('/preview', 'PREVIEW'),
     ];
 
     constructor(conn: Connection) {

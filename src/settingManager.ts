@@ -9,11 +9,14 @@ export class SettingManager {
     static KEY_ENTER_DATE: string = "enterDate";
     static KEY_BIRTH_DAY: string = "birthDay";
 
+    static KEY_NEWS_API_KEY: string = "newsAPI_key";
+
     static DEFAULT_VALUES: { [key: string]: string } = {
         [SettingManager.KEY_TRAINEE_NAME]: 'TEST',
         [SettingManager.KEY_UNIT_NAME]: '23연대',
         [SettingManager.KEY_ENTER_DATE]: '20191128',
         [SettingManager.KEY_BIRTH_DAY]: '20191128',
+        [SettingManager.KEY_NEWS_API_KEY]: '',
     }
 
     public static async GetOption(conn: Connection, key: string, useDefault: boolean = false) {
@@ -53,7 +56,7 @@ export class SettingManager {
 
         server.server.post('/settings', (req, res) => {
             const settings = req.body;
-            Promise.all(Object.keys(SettingManager.DEFAULT_VALUES).map(key => this.SetOption(conn, key, settings[key])))
+            Promise.all(Object.keys(settings).map(key => this.SetOption(conn, key, settings[key])))
                 .then(result => {
                     console.log(`Saved setting : ${JSON.stringify(settings)}`);
                     res.status(200).send({ result: true, echo: req.body });
