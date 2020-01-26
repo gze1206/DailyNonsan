@@ -34,7 +34,7 @@ export default class NewsModule extends ModuleBase {
             }
         });
         if (res == null || res.data == null) {
-            console.error('NEWS API REQUEST FAEILD!');
+            console.error('NEWS API REQUEST FAILED!');
             return this;
         }
         if (res.data.status !== 'ok') {
