@@ -10,6 +10,8 @@ export class SettingManager {
     static KEY_BIRTH_DAY: string = "birthDay";
 
     static KEY_NEWS_API_KEY: string = "newsAPI_key";
+    static KEY_MELON_URL: string = "melonURL";
+    static KEY_MELON_LIMIT: string = "melonLIMIT";
 
     static DEFAULT_VALUES: { [key: string]: string } = {
         [SettingManager.KEY_TRAINEE_NAME]: 'TEST',
@@ -17,6 +19,8 @@ export class SettingManager {
         [SettingManager.KEY_ENTER_DATE]: '20191128',
         [SettingManager.KEY_BIRTH_DAY]: '20191128',
         [SettingManager.KEY_NEWS_API_KEY]: '',
+        [SettingManager.KEY_MELON_URL]: 'https://www.melon.com/chart/day/index.htm',
+        [SettingManager.KEY_MELON_LIMIT]: '20',
     }
 
     public static async GetOption(conn: Connection, key: string, useDefault: boolean = false) {
