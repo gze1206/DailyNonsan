@@ -7,6 +7,7 @@ import { readFileSync } from "fs";
 import NewsModule from "./modules/news";
 import ModuleBase from "./modules/moduleBase";
 import MelonModule from "./modules/melon";
+import ExchangeModule from "./modules/exchange";
 
 (async () => {
 
@@ -30,6 +31,10 @@ import MelonModule from "./modules/melon";
         });
         web.use('/api/preview/melon', async (req, res, next) => {
             const module: ModuleBase = (await new MelonModule().DoWork(connection));
+            res.status(200).send(module.GetText());
+        });
+        web.use('/api/preview/exchange', async (req, res, next) => {
+            const module: ModuleBase = (await new ExchangeModule().DoWork(connection));
             res.status(200).send(module.GetText());
         });
 

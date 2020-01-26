@@ -12,6 +12,8 @@ export class SettingManager {
     static KEY_NEWS_API_KEY: string = "newsAPI_key";
     static KEY_MELON_URL: string = "melonURL";
     static KEY_MELON_LIMIT: string = "melonLIMIT";
+    static KEY_EXCHANGE_URL: string = "exchangeURL";
+    static KEY_EXCHANGE_CONF: string = "exchangeCONF";
 
     static DEFAULT_VALUES: { [key: string]: string } = {
         [SettingManager.KEY_TRAINEE_NAME]: 'TEST',
@@ -21,6 +23,8 @@ export class SettingManager {
         [SettingManager.KEY_NEWS_API_KEY]: '',
         [SettingManager.KEY_MELON_URL]: 'https://www.melon.com/chart/day/index.htm',
         [SettingManager.KEY_MELON_LIMIT]: '20',
+        [SettingManager.KEY_EXCHANGE_URL]: 'https://earthquake.kr:23490/query/',
+        [SettingManager.KEY_EXCHANGE_CONF]: '{"USDKRW": {"name": "미국 달러", "val": 1}}',
     }
 
     public static async GetOption(conn: Connection, key: string, useDefault: boolean = false) {
