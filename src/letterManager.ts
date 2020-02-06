@@ -80,7 +80,7 @@ export default class LetterManager {
             enterDate,
             '예비군인/훈련병',
             '육군',
-            '육군훈련소(26연대)',
+            this.getUnitName(unitName),
             thecamp.SoldierRelationship.FRIEND
         );
         console.log(soldier);
