@@ -74,22 +74,34 @@ export default class LetterManager {
         const enterDate = await SettingManager.GetOption(conn, SettingManager.KEY_ENTER_DATE, true) || '';
 
 
+        // const soldier = new thecamp.Soldier(
+        //     traineeName,
+        //     birthDate,
+        //     enterDate,
+        //     '예비군인/훈련병',
+        //     '육군',
+        //     this.getUnitName(unitName),
+        //     thecamp.SoldierRelationship.FRIEND
+        // );
         const soldier = new thecamp.Soldier(
-            traineeName,
-            birthDate,
-            enterDate,
+            '심은보',
+            '19990904',
+            '20200128',
             '예비군인/훈련병',
             '육군',
-            this.getUnitName(unitName),
+            '육군훈련소',
             thecamp.SoldierRelationship.FRIEND
         );
-        console.log(soldier);
+        // console.log(soldier);
 
+        // console.log(id, pw);
         const cookies = await thecamp.login(id, pw);
         this.cookies = cookies;
 
-        await thecamp.addSoldier(cookies, soldier);
+        const result = await thecamp.addSoldier(cookies, soldier);
+        // console.log(cookies, result);
         const [trainee] = await thecamp.fetchSoldiers(cookies, soldier);
+        // console.log(cookies, trainee);
 
         return trainee;
     }
@@ -121,9 +133,13 @@ export default class LetterManager {
     }
 
     private bakeMessage(traineeID?: string) {
+        let body = this.contents.join('\n');
+        if (null != traineeID) {
+            body = body.replace(/\n/gi, '<br/>');
+        }
         const message = new thecamp.Message(
             this.FormatTitle(),
-            this.contents.join('\n'),
+            body,
             traineeID || ''
         );
         return message;

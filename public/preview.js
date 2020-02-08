@@ -24,22 +24,11 @@ function GetPreview(name) {
         success: function (data) {
             // console.log('ajax : ', data);
             previewVue.$data.content = data;
-            Vue.notify({
-                group: 'result',
-                title: 'Load',
-                text: 'COMPLETE!',
-                duration: 3000
-            });
+            ShowNotify('success', 'Load', 'COMPLETE!');
         },
         error: function (request, status, error) {   // 오류가 발생했을 때 호출된다. 
             console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            Vue.notify({
-                group: 'result',
-                type: 'error',
-                title: 'Load',
-                text: `FAILED!\r\n${request.responseText}`,
-                duration: 3000
-            });
+            ShowNotify('error', 'Load', `FAILED!\r\n${request.responseText}`);
         },
     });
 }
