@@ -33,7 +33,7 @@
     "sqlite3": "^4.1.1",
     "the-camp-lib": "^2.2.1",
     "ts-node": "^8.5.2",
-    "typeorm": "^0.2.20",
+    "typeorm": "^0.2.25",
     "typescript": "^3.7.2"
   }
 }
